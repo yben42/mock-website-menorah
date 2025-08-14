@@ -1,108 +1,524 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Big Menorah Energy</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Big Menorah Energy — Placeholder Landing</title>
+  <meta name="description" content="Big Menorah Energy: a very serious placeholder landing page with filler content." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
-    header { background: #D4AF37; padding: 20px; text-align: center; color: white; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    section { padding: 40px 20px; max-width: 1000px; margin: auto; }
-    h1, h2, h3, h4 { margin-top: 0; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .card, .program, .contact-card { border: 1px solid #ccc; border-radius: 5px; padding: 20px; background: #fff; }
-    .pill { background: #D4AF37; color: white; padding: 5px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
-    blockquote { font-style: italic; background: #f9f9f9; padding: 10px; border-left: 5px solid #D4AF37; margin: 10px 0; }
-    footer { background: #f5f5f5; text-align: center; padding: 20px; font-size: 0.9em; }
-    form input, form textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 3px; border: 1px solid #ccc; }
-    form button { background: #D4AF37; color: white; border: none; padding: 10px 20px; cursor: pointer; }
-    form button:hover { background: #b8932f; }
+    :root{
+      --bg:#ffffff;
+      --ink:#0f1222;          /* deep neutral for readability */
+      --muted:#5f6578;
+      --line:#e9e9ef;
+      --gold:#D4AF37;         /* primary accent */
+      --gold-2:#c19b2f;       /* hover/darker accent */
+      --card:#ffffff;
+      --shadow: 0 1px 2px rgba(15,18,34,.06), 0 8px 24px rgba(15,18,34,.06);
+      --radius:14px;
+      --radius-sm:10px;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+    }
+    .skip-link:focus{
+      position:fixed;left:16px;top:16px;width:auto;height:auto;padding:.6rem .9rem;
+      background:var(--gold);color:#000;border-radius:8px;z-index:10000;box-shadow:var(--shadow);
+    }
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line);
+    }
+    .nav{
+      max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:16px;
+      padding:14px 20px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+    .brand svg{width:28px;height:28px;flex:0 0 auto}
+    .brand strong{font-weight:700;letter-spacing:.2px}
+    .tag{font-size:.78rem;color:var(--muted)}
+    .spacer{flex:1}
+    .navlinks{
+      display:flex;gap:14px;align-items:center;
+    }
+    .navlinks a{
+      text-decoration:none;color:var(--ink);padding:8px 10px;border-radius:8px;
+      transition:background .2s ease;
+    }
+    .navlinks a:hover{background:#f7f7fb}
+    .cta{
+      background:var(--gold);border:none;color:#000;font-weight:600;
+      padding:10px 14px;border-radius:10px;cursor:pointer;transition:transform .05s ease, background .2s ease;
+      box-shadow:0 1px 0 rgba(0,0,0,.05);
+    }
+    .cta:active{transform:translateY(1px)}
+    .cta:hover{background:var(--gold-2)}
+    .menu-btn{display:none;background:none;border:1px solid var(--line);padding:8px 10px;border-radius:10px}
+
+    /* Hero */
+    .hero{
+      background:
+        radial-gradient(1200px 400px at 50% -120px, rgba(212,175,55,.16), transparent 55%),
+        linear-gradient(#fff, #fff);
+      border-bottom:1px solid var(--line);
+    }
+    .hero .wrap{
+      max-width:var(--max);margin:0 auto;padding:56px 20px 46px;display:grid;gap:28px;
+      grid-template-columns: 1.2fr .8fr;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;
+      padding:6px 10px;font-size:.85rem;color:var(--muted);background:#fff;
+    }
+    .badge b{color:var(--gold)}
+    h1{
+      margin:8px 0 0;font-size:clamp(28px, 4.2vw, 48px);line-height:1.15;letter-spacing:-.4px;
+    }
+    .lead{font-size:1.05rem;color:var(--muted);max-width:55ch}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .ghost{
+      background:#fff;border:1.5px solid var(--line);color:var(--ink);font-weight:600;padding:10px 14px;border-radius:10px;cursor:pointer;
+    }
+    .hero-card{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:18px;
+    }
+    .hero-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+    .kpi{
+      background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center
+    }
+    .kpi b{display:block;font-size:1.15rem}
+    .mini{
+      display:flex;gap:10px;align-items:center;border-top:1px dashed var(--line);padding-top:12px;margin-top:12px;color:var(--muted);font-size:.92rem;
+    }
+    .mini svg{width:18px;height:18px;color:var(--gold);flex:0 0 auto}
+
+    /* Sections */
+    section{scroll-margin-top:90px}
+    .section{
+      max-width:var(--max);margin:0 auto;padding:54px 20px;border-bottom:1px solid var(--line);
+    }
+    .section h2{
+      font-size:clamp(22px, 3vw, 32px);margin:0 0 10px;letter-spacing:-.3px
+    }
+    .section p.sub{
+      margin:0 0 24px;color:var(--muted);max-width:62ch
+    }
+
+    /* Services */
+    .grid{
+      display:grid;gap:16px;grid-template-columns:repeat(3, minmax(0,1fr));
+    }
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:18px;display:flex;flex-direction:column;gap:10px
+    }
+    .eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .card h3{margin:0;font-size:1.12rem}
+    .card ul{margin:0;padding-left:18px}
+    .card li{margin:.25rem 0}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 10px;
+      font-size:.85rem;background:#fff;color:var(--ink);
+    }
+    .pill svg{width:16px;height:16px;color:var(--gold)}
+
+    /* Programs */
+    .programs{
+      display:grid;gap:16px;grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+    .program{
+      border:1px solid var(--line);border-radius:var(--radius-sm);padding:16px;background:#fff;box-shadow:var(--shadow)
+    }
+    .program header{display:flex;align-items:center;gap:10px;border:0;background:transparent;position:static;padding:0}
+    .program svg{width:20px;height:20px;color:var(--gold)}
+    .program h4{margin:0;font-size:1.02rem}
+    .program p{margin:.4rem 0 0;color:var(--muted)}
+
+    /* About */
+    .about-wrap{display:grid;gap:18px;grid-template-columns:1.1fr .9fr}
+    .stat{
+      border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;text-align:center
+    }
+    .stat b{display:block;font-size:1.3rem}
+
+    /* Contact */
+    .contact{
+      display:grid;gap:18px;grid-template-columns:1.1fr .9fr
+    }
+    form{
+      background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px
+    }
+    label{display:block;font-weight:600;margin:.4rem 0}
+    input, textarea, select{
+      width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);
+      font:inherit;outline:none;
+    }
+    input:focus, textarea:focus, select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.25)}
+    textarea{min-height:120px;resize:vertical}
+    .form-row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    .note{font-size:.9rem;color:var(--muted)}
+    .contact-card{
+      background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px
+    }
+    .contact-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .contact-list li{display:flex;gap:10px;align-items:flex-start}
+    .contact-list svg{width:18px;height:18px;color:var(--gold);flex:0 0 auto;margin-top:3px}
+
+    /* Footer */
+    footer{
+      padding:28px 20px;color:#000;background:linear-gradient(180deg, #fff 0%, #fff6d9 120%);
+      border-top:1px solid var(--line);
+    }
+    .foot-wrap{max-width:var(--max);margin:0 auto;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .foot-wrap small{color:#111}
+    .social{display:flex;gap:10px}
+    .social a{
+      display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none
+    }
+    .social a:hover{border-color:var(--gold)}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero .wrap{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .about-wrap, .contact{grid-template-columns:1fr}
+      .programs{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .navlinks{display:none}
+      .menu-btn{display:inline-flex;align-items:center;gap:8px;color:var(--ink);cursor:pointer}
+      .grid{grid-template-columns:1fr}
+    }
+    /* Utility */
+    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
 
-<header>
-  <h1>Big Menorah Energy</h1>
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#programs">Programs</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="#">
+        <!-- Simple menorah mark -->
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <g fill="currentColor" style="color: var(--gold);">
+            <rect x="30" y="20" width="4" height="22" rx="2"></rect>
+            <rect x="14" y="24" width="4" height="18" rx="2"></rect>
+            <rect x="46" y="24" width="4" height="18" rx="2"></rect>
+            <rect x="22" y="22" width="4" height="20" rx="2"></rect>
+            <rect x="38" y="22" width="4" height="20" rx="2"></rect>
+            <path d="M16 42c4 6 12 10 16 10s12-4 16-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="32" cy="18" r="2.2"></circle>
+            <circle cx="16" cy="22" r="2"></circle>
+            <circle cx="48" cy="22" r="2"></circle>
+            <circle cx="24" cy="20" r="2"></circle>
+            <circle cx="40" cy="20" r="2"></circle>
+          </g>
+        </svg>
+        <div>
+          <strong>Big Menorah Energy</strong><br>
+          <span class="tag">Placeholder • Placeholder • Placeholder</span>
+        </div>
+      </a>
+      <div class="spacer"></div>
+      <div class="navlinks" role="menubar">
+        <a role="menuitem" href="#services">Services</a>
+        <a role="menuitem" href="#programs">Programs</a>
+        <a role="menuitem" href="#about">About</a>
+        <a role="menuitem" href="#contact">Contact</a>
+        <button class="cta" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})" aria-label="Primary action">Do Something</button>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">Menu ▾</button>
+    </nav>
+    <div id="mobileNav" class="navlinks" style="display:none; border-top:1px solid var(--line); padding:10px 20px;">
+      <a href="#services" onclick="toggleMenu(false)">Services</a>
+      <a href="#programs" onclick="toggleMenu(false)">Programs</a>
+      <a href="#about" onclick="toggleMenu(false)">About</a>
+      <a href="#contact" onclick="toggleMenu(false)">Contact</a>
+      <button class="cta" style="width:100%; margin-top:6px;" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'}); toggleMenu(false)">Do Something</button>
+    </div>
+  </header>
 
-<section id="services">
-  <h2>Services</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="pill">Service 1</div>
-      <p>Placeholder description here.</p>
-    </div>
-    <div class="card">
-      <div class="pill">Service 2</div>
-      <p>Placeholder description here.</p>
-    </div>
-    <div class="card">
-      <div class="pill">Service 3</div>
-      <p>Placeholder description here.</p>
-    </div>
-  </div>
-</section>
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="badge" aria-label="badge">
+            <span aria-hidden="true">✨</span><b>Featured</b> Placeholder Badge
+          </span>
+          <h1>All the vibes with <span style="color:var(--gold)">Big Menorah Energy</span></h1>
+          <p class="lead">
+            This is some very official placeholder text. It’s here to look nice and say nothing in particular.
+            Words words words. More words. Even more words for balance.
+          </p>
+          <div class="hero-cta">
+            <button class="cta" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Start Something</button>
+            <button class="ghost" onclick="document.querySelector('#services').scrollIntoView({behavior:'smooth'})">See Services</button>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Highlights">
+          <div class="eyebrow">Why choose us</div>
+          <div class="hero-kpis">
+            <div class="kpi"><b>123%</b><span class="mini">Metric One</span></div>
+            <div class="kpi"><b>42</b><span class="mini">Metric Two</span></div>
+            <div class="kpi"><b>0%</b><span class="mini">Metric Three</span></div>
+          </div>
+          <div class="mini">
+            <!-- leaf icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3C12 3 9 8 9 8s-5 3-5 8a5 5 0 0 0 5 5c5 0 8-5 8-5s5-3 5-10c-3 2-6 2-8 2 0-2 0-5 5-5z"/></svg>
+            <span>Placeholder bullets • Placeholder perks • Placeholder vibes</span>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-<section id="programs">
-  <h2>Programs</h2>
-  <div class="grid">
-    <div class="program">
-      <h3>Program 1</h3>
-      <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-    <div class="program">
-      <h3>Program 2</h3>
-      <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-    <div class="program">
-      <h3>Program 3</h3>
-      <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-  </div>
-</section>
+    <section id="services" class="section" aria-labelledby="services-h">
+      <h2 id="services-h">Services</h2>
+      <p class="sub">Some extremely generic services listed below.</p>
+      <div class="grid">
+        <article class="card">
+          <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 17h16l-8-12z"/></svg> Service 1</div>
+          <h3>Description</h3>
+          <ul>
+            <li>Thing A</li>
+            <li>Thing B</li>
+            <li>Thing C</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 13h18v8H3zM6 3h12v6H6z"/></svg> Service 2</div>
+          <h3>Description</h3>
+          <ul>
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10v4H7zM4 8h16v14H4z"/></svg> Service 3</div>
+          <h3>Description</h3>
+          <ul>
+            <li>Point A</li>
+            <li>Point B</li>
+            <li>Point C</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 11h10v10H7zM9 3h6v6H9z"/></svg> Service 4</div>
+          <h3>Description</h3>
+          <ul>
+            <li>Feature A</li>
+            <li>Feature B</li>
+            <li>Feature C</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 13h10v8H7zM9 3h6v6H9z"/></svg> Service 5</div>
+          <h3>Description</h3>
+          <ul>
+            <li>Alpha</li>
+            <li>Beta</li>
+            <li>Gamma</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l9 4v6c0 5-4 9-9 10C7 21 3 17 3 12V6z"/></svg> Service 6</div>
+          <h3>Description</h3>
+          <ul>
+            <li>One</li>
+            <li>Two</li>
+            <li>Three</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-<section id="about">
-  <h2>About</h2>
-  <blockquote>"I am Beyoncé, always." — Michael Scott</blockquote>
-  <blockquote>"I'm not superstitious, but I am a little stitious." — Michael Scott</blockquote>
-  <blockquote>"Bears. Beets. Battlestar Galactica." — Jim Halpert</blockquote>
-</section>
+    <section id="programs" class="section" aria-labelledby="programs-h">
+      <h2 id="programs-h">Programs</h2>
+      <p class="sub">Equally vague programs to match the services.</p>
+      <div class="programs">
+        <article class="program">
+          <header>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3l9 4-9 4-9-4 9-4zm-9 7l9 4 9-4v7l-9 4-9-4v-7z"/></svg>
+            <h4>Program 1</h4>
+          </header>
+          <p>Words about Program 1 go here. Very informative.</p>
+        </article>
+        <article class="program">
+          <header>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 017 7c0 6-7 13-7 13S5 15 5 9a7 7 0 017-7z"/></svg>
+            <h4>Program 2</h4>
+          </header>
+          <p>Some placeholder description for Program 2.</p>
+        </article>
+        <article class="program">
+          <header>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16v2H4zm0 7h16v2H4zm0 7h16v2H4z"/></svg>
+            <h4>Program 3</h4>
+          </header>
+          <p>Another short line of neutral filler text.</p>
+        </article>
+        <article class="program">
+          <header>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 4a8 8 0 100 16 8 8 0 000-16zM7 11h10v2H7z"/></svg>
+            <h4>Program 4</h4>
+          </header>
+          <p>Yet more placeholder copy for symmetry.</p>
+        </article>
+      </div>
+    </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <div class="grid">
-    <div>
-      <form>
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <textarea placeholder="Your Message"></textarea>
-        <button type="submit">Send</button>
-      </form>
+    <section id="about" class="section" aria-labelledby="about-h">
+      <h2 id="about-h">About Big Menorah Energy</h2>
+      <div class="about-wrap">
+        <div>
+          <p class="sub">
+            “I am Beyoncé, always.” — Michael Scott
+          </p>
+          <ul>
+            <li>“I'm not superstitious, but I am a little stitious.” — Michael Scott</li>
+            <li>“Bears. Beets. Battlestar Galactica.” — Jim Halpert</li>
+            <li>“Would I rather be feared or loved? Easy. Both.” — Michael Scott</li>
+          </ul>
+        </div>
+        <aside>
+          <div class="stat"><b>1,234</b> Placeholder stat</div>
+          <div class="stat" style="margin-top:10px;"><b>5,678</b> Another stat</div>
+          <div class="stat" style="margin-top:10px;"><b>98%</b> Satisfaction (allegedly)</div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <div class="contact">
+        <form id="quoteForm" aria-describedby="contact-note">
+          <div class="form-row">
+            <div>
+              <label for="name">Full name</label>
+              <input id="name" name="name" required autocomplete="name" placeholder="John Doe" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="email" name="email" required autocomplete="email" placeholder="johndoe@example.com" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" inputmode="tel" placeholder="(555) 010-1337" />
+            </div>
+            <div>
+              <label for="interest">I'm interested in</label>
+              <select id="interest" name="interest" required>
+                <option value="" disabled selected>Select an option</option>
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+                <option>Option 6</option>
+              </select>
+            </div>
+          </div>
+          <label for="message">Details</label>
+          <textarea id="message" name="message" placeholder="Type whatever here…"></textarea>
+          <p id="contact-note" class="note">We typically reply when we see this.</p>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <button class="cta" type="submit">Send It</button>
+            <button class="ghost" type="reset">Reset</button>
+            <span id="formStatus" class="note" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+
+        <aside class="contact-card" aria-label="Company details">
+          <ul class="contact-list">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+              <div><strong>HQ (Placeholder)</strong><br> 123 Placeholder Way, Suite 200 • Your City</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.5 3 3.9 5.4 6.9 6.9l2.3-2.3c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.4 22 2 13.6 2 3c0-.6.4-1 1-1h3.3c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg>
+              <div><strong>Call</strong><br> (555) 010-0000</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 00-2 2v.4l10 6 10-6V6a2 2 0 00-2-2zm0 5.2l-8.6 5.2a1 1 0 01-1 0L2 9.2V18a2 2 0 002 2h16a2 2 0 002-2V9.2z"/></svg>
+              <div><strong>Email</strong><br> johndoe@example.com</div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h12v2H3z"/></svg>
+              <div><strong>Docs</strong><br> Placeholder docs • Placeholder links • Placeholder FAQ</div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot-wrap">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg viewBox="0 0 64 64" aria-hidden="true" style="width:22px;height:22px;color:var(--gold)"><g fill="currentColor"><rect x="30" y="20" width="4" height="22" rx="2"></rect><rect x="14" y="24" width="4" height="18" rx="2"></rect><rect x="46" y="24" width="4" height="18" rx="2"></rect><rect x="22" y="22" width="4" height="20" rx="2"></rect><rect x="38" y="22" width="4" height="20" rx="2"></rect><path d="M16 42c4 6 12 10 16 10s12-4 16-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></g></svg>
+        <small>© <span id="year"></span> Big Menorah Energy. All rights reserved.</small>
+      </div>
+      <div class="social" aria-label="Social links">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M22 12a10 10 0 10-11.6 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 3h-1.8v7A10 10 0 0022 12z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19 3A2.94 2.94 0 0122 6v12a2.94 2.94 0 01-3 3H5a2.94 2.94 0 01-3-3V6a2.94 2.94 0 013-3h14M8.3 17.3V10H6v7.3h2.3M7.1 8.7c.8 0 1.4-.6 1.4-1.3 0-.8-.6-1.4-1.4-1.4S5.7 6.6 5.7 7.4c0 .7.6 1.3 1.4 1.3m12 8.6V13c0-2.3-1.2-3.4-2.9-3.4-1.3 0-1.9.7-2.2 1.2v-1h-2.3v7.4h2.3v-4.1c0-1.1.2-2.1 1.6-2.1s1.6 1.3 1.6 2.2v4.1h2.3z"/></svg></a>
+        <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 3h4.7l4 6.7L16 3h5l-7.8 10.5L21 21h-4.7l-4.4-7.2L8 21H3l8-10.7L3 3z"/></svg></a>
+      </div>
     </div>
-    <div class="contact-card">
-      <p><strong>Name:</strong> John Doe</p>
-      <p><strong>Email:</strong> johndoe@example.com</p>
-      <p><strong>Phone:</strong> (555) 555-5555</p>
-      <p><strong>Address:</strong> 123 Fake Street, Faketown</p>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<footer>
-  &copy; <span id="year"></span> Big Menorah Energy. All rights reserved.
-</footer>
+  <script>
+    // Set year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    function toggleMenu(force){
+      const expanded = typeof force === 'boolean' ? force : mobileNav.style.display === 'none';
+      mobileNav.style.display = expanded ? 'block' : 'none';
+      menuBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      menuBtn.textContent = expanded ? 'Close ✕' : 'Menu ▾';
+    }
+    menuBtn?.addEventListener('click', () => toggleMenu());
 
+    // Basic client-side "submission"
+    const form = document.getElementById('quoteForm');
+    const statusEl = document.getElementById('formStatus');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      statusEl.textContent = 'Sending…';
+      setTimeout(() => {
+        statusEl.textContent = 'Thanks! This was a test.';
+        form.reset();
+      }, 600);
+      // To wire up a real backend later, POST data to your endpoint:
+      // fetch('/api/quote', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)})
+    });
+  </script>
 </body>
 </html>
